@@ -44,19 +44,27 @@ if __name__ == '__main__':
             new = float(input())
             control.set_Kp(new)
         if x == "c":
+            enc2.set_position(0)
+            #print(enc2.get_position())
             motor1.enable()
             while True:
                 #print('here')
-                update = enc1.update()
+                
+                update = enc2.update()
                 duty = control.run(update)
                 motor1.set_duty_cycle(duty)
                 #print(len(control.tArray))
                 #print(duty)
+                #print(update)
+                #print(control.getReference())
                 if update >= control.getReference():
                     motor1.disable()
                     motor1.set_duty_cycle(0)
                     control.print_data()
-                    enc1.set_position(0)
+                    print('error trigger')
+                    print('error trigger')
+                    print('error trigger')
+                    enc2.set_position(0)
                     break
         
                 

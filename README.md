@@ -8,13 +8,17 @@ motor once it has completed one full rotation. The figures below display our pro
 of tuning our proportional gain, *K<sub>P</sub>*, to improve the step response.
 
 
-![alt text](IDR Render.JPG)
+![alt text](kp of .0001.JPG)
 <br>
-Figure 1. Step response with input of 1 revolution; *K<sub>P</sub>* = XX.XX. The steady state 
-error is XX.XX and the response time to steady state is approximately XX.XX seconds. 
+Figure 1. Step response with input of 1 revolution; *K<sub>P</sub>* = 0.0001. The steady state 
+error is small and the response is a ramp function, as expected.
 
-Figure 2. Step response with input of 1 revolution; *K<sub>P</sub>* = XX.XX. The steady state 
-error is XX.XX and the response time to steady state is approximately XX.XX seconds.
+![alt text](kp of 1.JPG)
+<br>
+Figure 2. Step response with input of 1 revolution; *K<sub>P</sub>* = 1. The steady state 
+error is small and the response is a ramp function, as expected.
 
-Figure 3. Step response with input of 1 revolution; *K<sub>P</sub>* = XX.XX. The steady state 
-error is XX.XX and the response time to steady state is approximately XX.XX seconds.
+![alt text](kp of .05.JPG)
+<br>
+Figure 3. Step response with input of 1 revolution; *K<sub>P</sub>* = 0.05. The steady state 
+error is small and the response is a ramp function, as expected.

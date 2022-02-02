@@ -10,7 +10,7 @@
 import array
 import utime
 
-tick2deg = 1/(256*16*4/360)
+tick2deg = 1/(256*16*2/360)
 
 class ClosedLoop:
     '''
@@ -108,7 +108,8 @@ class ClosedLoop:
         #print('Time [sec], Position [deg]')
         for i in range(len(self.tArray)):
             print('{:},{:}'.format(self.tArray[i], self.pArray[i]))
-        
+        self.tArray = []
+        self.pArray = []
         #print(self.tArray, self.pArray)
         
     def send_data(self):

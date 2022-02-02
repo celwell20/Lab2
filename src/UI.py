@@ -27,12 +27,12 @@ class UI:
             port.write((command+"\r\n").encode('utf-8'))
     
     def read(self):
-        flag = True
+        #flag = True
         x = [] #preallocating some lists for future storage
         y = []
         with s.Serial(str(self.comnum), 115200) as port:
             #time.sleep(5)
-            while flag:
+            while True:
                 try:
                     data = port.readline().decode('utf-8')
                     
@@ -44,16 +44,22 @@ class UI:
                     ytemp = float(cooked[1]) # converting second index to float
                     x.append(xtemp) #adding first index to x list
                     y.append(ytemp) #adding second index to ylist
+                    print(y)
                 except:
                     break
-        
+        #print('here')
             
                     
-            plt.plot(x, y)
-            plt.xlabel('Abscissa')
-            plt.ylabel('Ordinate')
-            plt.title('First column of .csv file versus second column of .csv file')
-            plt.show()
+        plt.figure()
+        plt.plot(x, y)
+        plt.xlabel('Time, [sec]')
+        plt.ylabel('Angular position [deg]')
+        plt.title('1 Revolution Step Response - Position versus time with Kp = 0.05')
+        plt.show()
+        
+        x = []
+        y = []
+            
                 
                 # cooking = [idx for idx in data.strip().split('\n')]  # splitting based on the carriage return
                 # #print(cooking)
@@ -82,7 +88,7 @@ class UI:
 if __name__ == '__main__':
     
     
-    user = UI('COM7')
+    user = UI('COM6')
     while True:
         c = 0
         

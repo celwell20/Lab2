@@ -24,47 +24,45 @@ if __name__ == '__main__':
     motor1.enable()
     
     ## Driver object for second motor
-    #motor2 = moe.MotorDriver(pyb.Pin.cpu.C1, pyb.Pin.cpu.A0, pyb.Pin.cpu.A1, 5)
-    #motor2.enable()
+    motor2 = moe.MotorDriver(pyb.Pin.cpu.C1, pyb.Pin.cpu.A0, pyb.Pin.cpu.A1, 5)
+    motor2.enable()
     
     ## Driver object for first encoder
-    #enc1 = enc.EncoderDriver(pyb.Pin.cpu.B6, pyb.Pin.cpu.B7, 4)
+    enc1 = enc.EncoderDriver(pyb.Pin.cpu.B6, pyb.Pin.cpu.B7, 4)
     ## Driver object for second encoder
     enc2 = enc.EncoderDriver(pyb.Pin.cpu.C6, pyb.Pin.cpu.C7, 8)
     
-    #enc1.set_position(0)
+    enc1.set_position(0)
     enc2.set_position(0)
     
-    control = control.ClosedLoop(-100, 100, .05,16200)
+    #control = control.ClosedLoop(-100, 100, .05,16200)
     
-    CommReader = pyb.USB_VCP()
     
-    command = 0
     
-    while True:
-        try:
-            
-            if CommReader.any():
-                
-                command = CommReader.read(1)
-                CommReader.read()
-                
-            if command == b'\a':
-                
-                control.set_setpoint(input('Please input a new reference position'))
-            
-            elif command == b'\b':
-                
-                control.set_Kp(input('Please input a new proportional gain'))
-                
-            elif command == b'\c':
-                
-                update = enc2.update
-                
-                if duty <= 15:
-                    motor1.set_duty_cycle(0)
-                    control.print_data()
-                    break
+#     while True:
+#         try:
+#             
+#             if CommReader.any():
+#                 
+#                 command = CommReader.read(1)
+#                 CommReader.read()
+#                 
+#             if command == b'\a':
+#                 
+#                 control.set_setpoint(input('Please input a new reference position'))
+#             
+#             elif command == b'\b':
+#                 
+#                 control.set_Kp(input('Please input a new proportional gain'))
+#                 
+#             elif command == b'\c':
+#                 
+#                 update = enc2.update
+#                 
+#                 if duty <= 15:
+#                     motor1.set_duty_cycle(0)
+#                     control.print_data()
+#                     break
             #if command = 'b\x1b':
                     
             
@@ -89,11 +87,11 @@ if __name__ == '__main__':
             #utime.sleep_ms(10)
         
         
-        except KeyboardInterrupt:
-            motor1.set_duty_cycle(0)
-            #motor2.set_duty_cycle(0)
-            motor1.disable()
-            #motor2.disable()
-            break
+#         except KeyboardInterrupt:
+#             motor1.set_duty_cycle(0)
+#             #motor2.set_duty_cycle(0)
+#             motor1.disable()
+#             #motor2.disable()
+#             break
     
     
