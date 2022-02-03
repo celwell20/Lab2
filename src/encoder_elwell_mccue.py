@@ -6,7 +6,7 @@
                    has a method that is used to return encoder position and velocity to the encoder task.
    @author         Clayton Elwell
    @author         Tyler McCue
-   @date           January 27, 2022
+   @date           February 3, 2022
 """
 import pyb
 

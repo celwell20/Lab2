@@ -3,8 +3,9 @@
 @brief          Closed loop control class
 @details        Class implementing a closed loop controller with only a
                 proportional gain or a P controller
-@author         Tyler McCue, Nick De Simone, Charlie Refvem (Reference)
-@date           Nov 2nd, 2021
+@author         Tyler McCue
+@author         Clayton Elwell
+@date           February 3, 2021
 '''
 
 import array
@@ -113,5 +114,8 @@ class ClosedLoop:
         #print(self.tArray, self.pArray)
         
     def send_data(self):
-        
+        '''@brief Sends the collected position and time data in a list
+           @return The list of time and position values collected
+
+        '''
         return [self.tArray, self.pArray]

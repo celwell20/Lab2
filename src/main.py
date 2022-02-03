@@ -1,9 +1,10 @@
 """@file        main.py
    @brief       Closed loop motor control main module
-   @details     Runs closed loop proportional control step response test
+   @details     Runs closed loop proportional control step response on a Nucleo when a trigger is received by the UI running
+                on a PC.
    @author        Clayton Elwell
    @author        Tyler McCue
-   @date          January 27, 2022
+   @date          February 3, 2022
 """
 
 import encoder_elwell_mccue as enc
@@ -31,16 +32,18 @@ if __name__ == '__main__':
     
     enc1.set_position(0)
     enc2.set_position(0)
-    
+    ## Object for controller
     control = control.ClosedLoop(-100, 100, 1, 0, 0)
     
     
     while True:
         x = input()
         if x == "a":
+            ## Reference position value input by user
             ref = float(input())
             control.setReference(ref)
         if x == "b":
+            ## New proportional gain input by user
             new = float(input())
             control.set_Kp(new)
         if x == "c":
@@ -49,8 +52,9 @@ if __name__ == '__main__':
             motor1.enable()
             while True:
                 #print('here')
-                
+                ## Updated encoder position
                 update = enc2.update()
+                ## Updated duty cycle determined by controller
                 duty = control.run(update)
                 motor1.set_duty_cycle(duty)
                 #print(len(control.tArray))

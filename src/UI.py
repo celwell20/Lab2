@@ -1,10 +1,27 @@
+''' @file   UI.py
+    @brief  PCPython module that communicates with the Nucleo via serial port.
+    @details  Allows the user to set the reference position of the controller, the proportional gain of the controller, and
+              run a step response on the controller.
+    @author    Clayton Elwell
+    @author    Tyler McCue
+    @date      February 3, 2022
+'''
+
 import serial as s
 import matplotlib.pyplot as plt
 import time
 
 class UI:
+    '''@brief    User interface task to send various commands to a Nucleo via serial port.
+       @details  Reads and writes to the Nucleo; sends triggers to cause the Nucleo to execute its own code; interprets
+                 numerical data from the Nucleo and plots it.
+    '''
     def __init__(self, com):
-        
+        '''@brief    Constructs a UI object
+           @details  Prints the UI instructions, sets the COM port to communicate with
+           @param    com Serial port for communication with the Nucleo
+        '''
+        ## Serial port attribute
         self.comnum = com
         
         print(' ____________________________ ')
@@ -22,29 +39,39 @@ class UI:
     
     
     def run(self, command):
-        
+        '''@brief   Writes to the Nucleo
+           @details Uses pyserial for serial communication
+           @param   command Variable to be written to serial port
+        '''
         with s.Serial(str(self.comnum), 115200) as port:
             port.write((command+"\r\n").encode('utf-8'))
     
     def read(self):
+        '''@brief    Reads from the Nucleo via serial
+           @details  Reads numerical data from the Nucleo, parses it, and appends it to lists/arrays for future plotting.
+        '''
         #flag = True
+        ## Absicca list
         x = [] #preallocating some lists for future storage
+        ## Ordinate list
         y = []
         with s.Serial(str(self.comnum), 115200) as port:
             #time.sleep(5)
             while True:
                 try:
+                    ## Raw data read from serial
                     data = port.readline().decode('utf-8')
-                    
+                    ## Parsed data
                     cooked = [idx for idx in data.replace('\r\n', '').split(',')]
-                    #fried = [idx for idx in cooked]
-                    #print(cooked[0])
-                        
+                    
+                    
+                    ## Ordinate staging variable
                     xtemp = float(cooked[0]) # converting first index to float
+                    ## Abscicca staging variable
                     ytemp = float(cooked[1]) # converting second index to float
                     x.append(xtemp) #adding first index to x list
                     y.append(ytemp) #adding second index to ylist
-                    print(y)
+                    #print(y)
                 except:
                     break
         #print('here')
@@ -87,9 +114,10 @@ class UI:
                     
 if __name__ == '__main__':
     
-    
+    ## User interface object
     user = UI('COM6')
     while True:
+        ## Trigger attribute
         c = 0
         
         c = input("Enter Command: ")
