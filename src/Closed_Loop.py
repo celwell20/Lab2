@@ -10,7 +10,7 @@
 
 import array
 import utime
-
+## Tick to degrees conversion attribute
 tick2deg = 1/(256*16*2/360)
 
 class ClosedLoop:
@@ -26,6 +26,8 @@ class ClosedLoop:
         @param saturation_low   Loweset value actuatuion can be based on system
         @param saturation_high  Highest value actuatuion can be based on system
         @param Kp               Proportional gain
+        @param dhigh            Dead zone upper limit
+        @param dlow             Dead zone lower limit
         '''
         ## Initial time
         self.t0 = utime.ticks_ms()

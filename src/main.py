@@ -37,6 +37,7 @@ if __name__ == '__main__':
     
     
     while True:
+        ## Input from the keyboard attribute
         x = input()
         if x == "a":
             ## Reference position value input by user

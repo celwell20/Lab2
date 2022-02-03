@@ -124,6 +124,7 @@ if __name__ == '__main__':
         #print(user.read())
         user.run(c)
         if c == "a":
+            ## Attribute that holds user-input reference position or controller gain.
             com = input("Please set reference position: ")
             user.run(com)
         elif c == "b":
